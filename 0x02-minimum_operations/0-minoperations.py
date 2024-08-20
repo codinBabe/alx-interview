@@ -12,4 +12,3 @@ def minOperations(n):
         if n % i == 0:
             return minOperations(n // i) + i
     return 0
-    
