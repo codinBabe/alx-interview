@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """A method that check utf-8 encoding"""
 
 def validUTF8(data):
