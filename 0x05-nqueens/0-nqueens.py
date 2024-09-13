@@ -42,5 +42,5 @@ def solve(n):
         k = []
         i = 0
 
-solve(n)
 
+solve(n)
