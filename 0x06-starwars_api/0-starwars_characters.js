@@ -6,7 +6,7 @@ const request = require("request");
 function getStarWarsCharacters() {
   const arg = process.argv[2];
   if (arg && arg > 0 && arg <= 7) {
-    const url = `https://swapi-api.hbtn.io/api/films/${arg}`;
+    const url = `https://swapi-api.alx-tools.com/api/films/${arg}`;
     request(url, async function (error, response, body) {
       if (error) {
         console.error(error);
