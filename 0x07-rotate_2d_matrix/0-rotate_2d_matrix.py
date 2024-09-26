@@ -1,5 +1,5 @@
-#!/usr/bin/python
-"""Rotate matrix , rotate it 90 degrees clockwise."""
+#!/usr/bin/python3
+"""Rotate 2D Matrix."""
 
 
 def rotate_2d_matrix(matrix: list) -> None:
