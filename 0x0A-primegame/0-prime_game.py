@@ -12,6 +12,7 @@ def rem_multiples(a, b):
 
 
 def isWinner(x, nums):
+    """Determine the winner of the game."""
     if x <= 0 or nums is None:
         return None
     if x != len(nums):
