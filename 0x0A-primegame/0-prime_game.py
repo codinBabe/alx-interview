@@ -12,20 +12,27 @@ def rem_multiples(a, b):
 
 
 def isWinner(x, nums):
-    """Determine who the winner of the game is."""
-    if x < 1 or not nums:
+    if x <= 0 or nums is None:
         return None
+    if x != len(nums):
+        return None
+    
+    ben = 0
+    maria = 0
 
-    n = max(nums)
-    primes = [0, 0] + [1] * (n - 1)
-    for i in range(2, n + 1):
-        if primes[i]:
-            rem_multiples(primes, i)
+    a = [1 for x in range(sorted(nums)[-1] + 1)]
+    a[0], a[1] = 0, 0
+    for i in range(2, len(a)):
+        rem_multiples(a, i)
 
-    primes = [i for i, n in enumerate(primes) if n]
-
-    m = 0
-    for n in nums:
-        m += sum(1 for p in primes if p <= n)
-
-    return "Maria" if m % 2 else "Ben"
+    for i in nums:
+        if sum(a[0:i + 1]) % 2 == 0:
+            ben += 1
+        else:
+            maria += 1
+    if ben > maria:
+        return "Ben"
+    elif ben < maria:
+        return "Maria"
+    else:
+        return None
