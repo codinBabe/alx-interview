@@ -2,47 +2,41 @@
 """A prime game module."""
 
 
-def isPrime(n):
-        """
-        Check if a number is prime.
-        """
-        if n <= 1:
-            return False
-        for i in range(2, n):
-            if n % i == 0:
-                return False
+def is_prime(n):
+    """Check if a number is prime."""
+    if n <= 1:
+        return False
+    if n <= 3:
         return True
-
-
-def getPrimes(n):
-    """Get all prime numbers up to n."""
-    primes = []
-    for i in range(2, n + 1):
-        if isPrime(i):
-            primes.append(i)
-    return primes
-
-
-def getWinner(n):
-    """Determine the winner of the game."""
-    primes = getPrimes(n)
-    if len(primes) % 2 == 0:
-        return "Ben"
-    return "Maria"
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
 
 
 def isWinner(x, nums):
-    """Determine who the winner of each game is."""
-    maria = 0
-    ben = 0
-    for n in nums:
-        winner = getWinner(n)
-        if winner == "Maria":
-            maria += 1
+    """Determine the winner of the game."""
+    if x < 1:
+        return None
+    if not nums:
+        return None
+    n = max(nums)
+    primes = [0] * (n + 1)
+    for i in range(1, n + 1):
+        primes[i] = primes[i - 1]
+        if is_prime(i):
+            primes[i] += 1
+    wins = [0, 0]
+    for i in range(x):
+        score = primes[nums[i]] - (i - wins[0])
+        if score % 2 == 0:
+            wins[1] += 1
         else:
-            ben += 1
-    if maria > ben:
-        return "Maria"
-    if ben > maria:
-        return "Ben"
-    return None
+            wins[0] += 1
+    if wins[0] == wins[1]:
+        return None
+    return "Maria" if wins[0] > wins[1] else "Ben"
