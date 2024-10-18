@@ -17,7 +17,7 @@ def isWinner(x, nums):
         return None
     if x != len(nums):
         return None
-    
+
     ben = 0
     maria = 0
 
